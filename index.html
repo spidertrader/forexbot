@@ -3,180 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForexBot (by SpiderTrader)</title>
+    <title>VodiyTrade - Forex Akademiyasi</title>
+    
+    <!-- Tashqi CSS fayli -->
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts - Inter fontini yuklash -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ikonkalar uchun kutubxona (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Animatsiyalar uchun kutubxona (AOS) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
-    <!-- RoboForex kotirovkalar tasmasi (foydalanuvchi tomonidan berilgan) -->
-    <div class="quotes-tape-wrapper">
-        <iframe width="100%" height="40" frameborder="0" class="rmxz" src="https://staticmy.roboforex.pro/uz/partners/informers_get/?width=400&width_type=slider&speed=4&color_bg=%23ffffff&color_bd=%23dbe5e8&arrows=on&data_type=price&EURUSD=&GBPUSD=&USDCHF=&USDJPY=&USDCAD=&AUDUSD=&NZDUSD=&EURGBP=&EURJPY=&EURCHF=&GBPJPY=&GBPCHF=&type=quotestape"></iframe>
-    </div>
-
-    <!-- Sahifa sarlavhasi -->
-    <header class="header">
-        <div class="container">
-            <h1>ForexBot <span class="by-spidertrader">(by SpiderTrader)</span></h1>
-            <p class="tagline">Sizning Algotrading bo'yicha ishonchli hamkoringiz</p>
-        </div>
+    <!-- Header qismi -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Vodiy<span>Trade</span></a>
+            <ul class="nav-links">
+                <li><a href="#courses">Kurslar</a></li>
+                <li><a href="#brokers">Brokerlar</a></li>
+                <li><a href="#articles">Maqolalar</a></li>
+                <li><a href="#team">Jamoa</a></li>
+                <li><a href="#contact">Aloqa</a></li>
+            </ul>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+        </nav>
     </header>
 
-    <!-- Asosiy navigatsiya menyusi -->
-    <nav class="main-nav">
-        <div class="container">
-            <ul>
-                <li><a href="#robots">Savdo Robotlari</a></li>
-                <li><a href="#articles">Maqolalar</a></li>
-                <li><a href="#brokers">Brokerlar</a></li>
-                <li><a href="#services">Xizmatlar</a></li>
-            </ul>
+    <!-- Asosiy ekran -->
+    <section id="hero" class="container">
+        <div class="hero-content" data-aos="fade-right">
+            <h1 class="hero-title">Moliyaviy Erkinlikka <br> Birinchi Qadam</h1>
+            <p class="hero-description">
+                VodiyTrade akademiyasi bilan professional treydingni 0 dan boshlab o'rganing va stabil daromadga chiqing.
+            </p>
+            <div class="hero-buttons">
+                <a href="#courses" class="btn btn-primary">Kurslarni Ko'rish</a>
+                <a href="https://t.me/your_telegram_channel" class="btn btn-secondary" target="_blank">Telegram Kanal</a>
+            </div>
         </div>
-    </nav>
-
-    <!-- Qahramon bo'limi (Hero Section) -->
-    <section id="hero" class="hero-section">
-        <div class="container">
-            <h2>Algotrading Dunyosiga Xush Kelibsiz!</h2>
-            <p>Men, SpiderTrader, sizga moliyaviy bozorlarda muvaffaqiyatga erishishingiz uchun yuqori samarali savdo robotlari va qimmatli ma'lumotlarni taqdim etaman.</p>
-            <a href="#robots" class="btn-primary">Robotlarimni ko'rish</a>
+        <div class="hero-image" data-aos="fade-left">
+            <img src="https://placehold.co/500x500/111827/06b6d4?text=Trading+Grafik" alt="Trading Grafikasi">
         </div>
     </section>
 
-    <!-- Savdo Robotlari bo'limi -->
-    <section id="robots" class="section-padded">
-        <div class="container">
-            <h2>Bizning Savdo Robotlarimiz</h2>
-            <div class="robot-cards-grid">
-                <!-- Web Recovery Gold roboti -->
-                <div class="robot-card">
-                    <h3>Web Recovery Gold</h3>
-                    <p>Web Recovery Gold - bu yuqori aniqlik va xavfsizlik bilan ishlab chiqilgan avtomatik savdo robotidir. U bozorlardagi o'zgaruvchanlikdan maksimal darajada foydalanishga mo'ljallangan.</p>
-                    <ul>
-                        <li>✅ Yuqori daromadlilik</li>
-                        <li>✅ Minimal risk</li>
-                        <li>✅ To'liq avtomatlashtirilgan</li>
-                        <li>✅ Barcha valyuta juftliklarida ishlaydi</li>
-                    </ul>
-                    <p class="contact-text">Batafsil ma'lumot olish uchun biz bilan bog'laning!</p>
+    <!-- Kurslar bo'limi -->
+    <section id="courses" class="container">
+        <h2 class="section-title" data-aos="fade-up">Bizning Dasturlar</h2>
+        <div class="courses-grid">
+            <!-- Mini Kurs -->
+            <div class="course-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="course-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Mini Kurs (Bepul)</h3>
+                <p>Tradingni 0 dan o'rganish uchun 1 haftalik, 3 ta asosiy darsdan iborat tezkor va mutlaqo BEPUL kurs.</p>
+                <a href="#" class="course-link">Batafsil &rarr;</a>
+            </div>
+            <!-- Pro Kurs -->
+            <div class="course-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="course-icon"><i class="fas fa-crown"></i></div>
+                <h3>Pro Kurslar</h3>
+                <p>2 oy davomida Forexni professional darajada o'rganish. Narxlar $100 dan boshlanadi.</p>
+                <a href="#" class="course-link">Batafsil &rarr;</a>
+            </div>
+            <!-- Algotrading -->
+            <div class="course-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="course-icon"><i class="fas fa-robot"></i></div>
+                <h3>Algotrading</h3>
+                <p>Savdo robotlari, sun'iy intellekt va indikatorlar yordamida avtomatlashgan savdoni o'rganing.</p>
+                <a href="#" class="course-link">Batafsil &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Murakkab Foiz Kalkulyatori -->
+    <section id="calculator" class="container">
+        <h2 class="section-title" data-aos="fade-up">Stabil Daromad Potensiali</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Oyiga 10% daromad bilan sarmoyangiz qanday o'sishini hisoblab ko'ring.</p>
+        <div class="calculator-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <div class="calculator-form">
+                <div>
+                    <label for="initial">Boshlang'ich Sarmoya ($)</label>
+                    <input type="number" id="initial" value="1000">
                 </div>
-                <!-- Qo'shimcha robot kartalari shu yerga qo'shilishi mumkin -->
-                <div class="robot-card">
-                    <h3>ProFit Scalper</h3>
-                    <p>ProFit Scalper - tezkor bozor harakatlaridan foydalanish uchun mo'ljallangan, yuqori chastotali savdo strategiyasiga ega robot. Qisqa muddatli savdolarda yuqori samaradorlikni ta'minlaydi.</p>
-                    <ul>
-                        <li>✅ Tezkor ijro</li>
-                        <li>✅ Qisqa muddatli savdolar</li>
-                        <li>✅ Yuqori likvidlikda samarali</li>
-                        <li>✅ Bir nechta valyuta juftliklari</li>
-                    </ul>
-                    <p class="contact-text">Batafsil ma'lumot olish uchun biz bilan bog'laning!</p>
+                <div>
+                    <label for="monthly">Oylik Qo'shimcha ($)</label>
+                    <input type="number" id="monthly" value="100">
+                </div>
+                <div>
+                    <label for="rate">Oylik Foiz (%)</label>
+                    <input type="number" id="rate" value="10">
+                </div>
+                <div>
+                    <label for="years">Davomiyligi (Yil)</label>
+                    <input type="number" id="years" value="5">
+                </div>
+                <button id="calculate-btn" class="btn btn-primary">Hisoblash</button>
+            </div>
+            <div class="calculator-result">
+                <h3>Natija:</h3>
+                <p>Umumiy Balans: <span id="total-balance">$0</span></p>
+                <p>Sof Foyda: <span id="total-profit">$0</span></p>
+                <div class="chart-container">
+                    <canvas id="growthChart"></canvas>
                 </div>
             </div>
         </div>
+    </section>
+    
+    <!-- Brokerlar bo'limi -->
+    <section id="brokers" class="container">
+        <h2 class="section-title" data-aos="fade-up">Ishonchli Brokerlar</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Biz tavsiya qiladigan TOP-5 brokerlar reytingi.</p>
+        <!-- Brokerlar ro'yxati shu yerga qo'shiladi -->
     </section>
 
     <!-- Maqolalar bo'limi -->
-    <section id="articles" class="section-padded bg-light">
-        <div class="container">
-            <h2>Maqolalar</h2>
-            <div class="articles-grid">
-                <div class="article-category">
-                    <h3>Forexga oid maqolalar</h3>
-                    <div class="article-item">
-                        <h4>Forex nima va u qanday ishlaydi?</h4>
-                        <p>Forex (Foreign Exchange) bozori – bu dunyodagi eng yirik moliyaviy bozor bo'lib, unda valyutalar savdosi amalga oshiriladi. Bu bozor 24 soat davomida, haftasiga 5 kun ishlaydi va kunlik aylanmasi trillion dollardan oshadi...</p>
-                        <a href="#" class="read-more">Batafsil o'qish</a>
-                    </div>
-                    <div class="article-item">
-                        <h4>Forexda muvaffaqiyat sirlari</h4>
-                        <p>Forex bozorida muvaffaqiyatga erishish uchun bir qancha muhim qoidalarga amal qilish lozim. Bularga to'g'ri strategiya tanlash, risklarni boshqarish, psixologik tayyorgarlik va doimiy o'rganish kiradi...</p>
-                        <a href="#" class="read-more">Batafsil o'qish</a>
-                    </div>
-                </div>
-                <div class="article-category">
-                    <h3>Algotradingga oid maqolalar</h3>
-                    <div class="article-item">
-                        <h4>Algotradingning afzalliklari</h4>
-                        <p>Algotrading (algoritmik savdo) – bu kompyuter dasturlari yordamida avtomatik tarzda savdo qilish jarayonidir. U inson omilini kamaytiradi, tezlikni oshiradi va katta hajmdagi ma'lumotlarni tahlil qilish imkonini beradi...</p>
-                        <a href="#" class="read-more">Batafsil o'qish</a>
-                    </div>
-                    <div class="article-item">
-                        <h4>Savdo robotini tanlash bo'yicha qo'llanma</h4>
-                        <p>To'g'ri savdo robotini tanlash – bu muvaffaqiyatli algotradingning muhim qismi. Robotni tanlashda uning strategiyasi, ishonchliligi, avvalgi natijalari va qo'llab-quvvatlash xizmatiga e'tibor berish lozim...</p>
-                        <a href="#" class="read-more">Batafsil o'qish</a>
-                    </div>
-                </div>
+    <section id="articles" class="container">
+        <h2 class="section-title" data-aos="fade-up">So'nggi Maqolalar</h2>
+        <!-- Maqolalar kartochkalari shu yerga qo'shiladi -->
+    </section>
+
+    <!-- Jamoa bo'limi -->
+    <section id="team" class="container">
+        <h2 class="section-title" data-aos="fade-up">Bizning Jamoa</h2>
+        <div class="team-grid">
+            <div class="team-member" data-aos="zoom-in">
+                <img src="https://placehold.co/200x200/1f2937/ffffff?text=Rasm" alt="Jamoa a'zosi">
+                <h4>Ism Familiya</h4>
+                <p>Akademiya asoschisi</p>
+            </div>
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://placehold.co/200x200/1f2937/ffffff?text=Rasm" alt="Jamoa a'zosi">
+                <h4>Ism Familiya</h4>
+                <p>Bosh treyder, Mentor</p>
+            </div>
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://placehold.co/200x200/1f2937/ffffff?text=Rasm" alt="Jamoa a'zosi">
+                <h4>Ism Familiya</h4>
+                <p>Marketing menejeri</p>
             </div>
         </div>
     </section>
 
-    <!-- Brokerlar bo'limi -->
-    <section id="brokers" class="section-padded">
-        <div class="container">
-            <h2>Tavsiya Etilgan Brokerlar</h2>
-            <div class="broker-list-grid">
-                <div class="broker-item">
-                    <h3>RoboForex</h3>
-                    <p>RoboForex – bu xalqaro broker bo'lib, treyderlarga keng ko'lamli xizmatlar va savdo instrumentlarini taklif etadi. Uning ishonchliligi va innovatsion yechimlari bilan tanilgan.</p>
-                    <a href="https://www.roboforex.com/" target="_blank" class="btn-secondary">Veb-saytga o'tish</a>
+    <!-- Aloqa va Manzil -->
+    <section id="contact" class="container">
+        <h2 class="section-title" data-aos="fade-up">Biz Bilan Aloqa</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info" data-aos="fade-right">
+                <h3>Bizning Manzil:</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Farg'ona sh, O'zbekiston ko'ch, 1-uy</p>
+                <h3>Ijtimoiy tarmoqlar:</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
-                <div class="broker-item">
-                    <h3>XM</h3>
-                    <p>XM – bu dunyodagi yetakchi Forex va CFD brokerlaridan biri. U tezkor ijro, past spredlar va mijozlarga yuqori darajadagi xizmat ko'rsatish bilan ajralib turadi.</p>
-                    <a href="https://www.xm.com/" target="_blank" class="btn-secondary">Veb-saytga o'tish</a>
-                </div>
-                <div class="broker-item">
-                    <h3>Exness</h3>
-                    <p>Exness – bu shaffoflik va innovatsiyalarga e'tibor qaratuvchi global broker. Uning mijozlarga yo'naltirilgan yondashuvi va keng savdo shartlari ko'plab treyderlarni o'ziga jalb qiladi.</p>
-                    <a href="https://www.exness.com/" target="_blank" class="btn-secondary">Veb-saytga o'tish</a>
-                </div>
-                <div class="broker-item">
-                    <h3>FxPro</h3>
-                    <p>FxPro – bu mukofotlarga sazovor bo'lgan broker bo'lib, u turli xil savdo platformalari va instrumentlarini taklif etadi. Uning tezkor ijro va raqobatbardosh narxlari bilan mashhur.</p>
-                    <a href="https://www.fxpro.com/" target="_blank" class="btn-secondary">Veb-saytga o'tish</a>
-                </div>
-                <div class="broker-item">
-                    <h3>Pepperstone</h3>
-                    <p>Pepperstone – bu yuqori tezlikdagi ijro va past savdo xarajatlarini taklif etuvchi yetakchi ECN broker. Uning keng instrumentlar assortimenti va kuchli tahliliy vositalari bor.</p>
-                    <a href="https://pepperstone.com/" target="_blank" class="btn-secondary">Veb-saytga o'tish</a>
-                </div>
+            </div>
+            <div class="contact-map" data-aos="fade-left">
+                <!-- Bu yerga Google Maps iframe joylashtiriladi -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97247.36199464883!2d71.71443934335937!3d40.389632700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb834303532a79%3A0x74f173d320551342!2sFergana%2C%20Fergana%20Region%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1724597453673!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Xizmatlar bo'limi (RoboForex Informerlari) -->
-    <section id="services" class="section-padded bg-light">
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            <h2>Bizning Xizmatlarimiz (RoboForex Informerlari)</h2>
-            <p class="section-description">RoboForex tomonidan taqdim etilgan qulay informerlar orqali moliyaviy bozorlardagi so'nggi ma'lumotlardan xabardor bo'ling.</p>
-            
-            <div class="informer-block">
-                <h3>Iqtisodiy Yangiliklar Taqvim</h3>
-                <!-- Iqtisodiy taqvim informerining iframe'i -->
-                <div class="iframe-responsive-wrapper">
-                    <iframe id="economic-calendar" src="https://staticmy.roboforex.pro/uz/partners/informers_get/?width=100%25&height=400&type=economic_calendar&color_bg=%23ffffff&color_bd=%23dbe5e8&color_text=%23333333&color_link=%230056b3&color_title=%230056b3&color_event_bg=%23f0f0f0&color_event_text=%23333333&color_event_link=%230056b3&color_event_border=%23dbe5e8&color_event_hover=%23e0e0e0&color_event_active=%23d0d0d0&color_event_active_text=%23333333&color_event_active_link=%230056b3&color_event_active_border=%23dbe5e8&color_event_active_hover=%23c0c0c0&color_event_active_active=%23b0b0b0&color_event_active_active_text=%23333333&color_event_active_active_link=%230056b3&color_event_active_active_border=%23dbe5e8" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <div class="informer-block">
-                <h3>Grafiklar (Kotirovkalar)</h3>
-                <!-- Grafiklar informerining iframe'i -->
-                <div class="iframe-responsive-wrapper">
-                    <iframe id="charts-informer" src="https://staticmy.roboforex.pro/uz/partners/informers_get/?width=100%25&height=400&type=chart&color_bg=%23ffffff&color_bd=%23dbe5e8&color_text=%23333333&color_link=%230056b3&color_title=%230056b3&color_chart_bg=%23ffffff&color_chart_grid=%23f0f0f0&color_chart_text=%23333333&color_chart_line=%230056b3&color_chart_candle_up=%2328a745&color_chart_candle_down=%23dc3545&color_chart_volume=%23cccccc&color_chart_indicator=%230056b3&color_chart_indicator_line=%230056b3&color_chart_indicator_fill=%23e0e0e0&color_chart_indicator_border=%23dbe5e8&color_chart_indicator_text=%23333333&color_chart_indicator_link=%230056b3&color_chart_indicator_hover=%23e0e0e0&color_chart_indicator_active=%23d0d0d0&color_chart_indicator_active_text=%23333333&color_chart_indicator_active_link=%230056b3&color_chart_indicator_active_border=%23dbe5e8&color_chart_indicator_active_hover=%23c0c0c0&color_chart_indicator_active_active=%23b0b0b0&color_chart_indicator_active_active_text=%23333333&color_chart_indicator_active_active_link=%230056b3&color_chart_indicator_active_active_border=%23dbe5e8" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Saytning pastki qismi (Footer) -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 ForexBot (by SpiderTrader). Barcha huquqlar himoyalangan.</p>
+            <p>&copy; 2024 VodiyTrade. Barcha huquqlar himoyalangan.</p>
         </div>
     </footer>
 
+
+    <!-- Tashqi JS fayllar -->
+    <!-- Animatsiyalar uchun -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- Grafiklar uchun (Chart.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Asosiy skript fayli -->
     <script src="script.js"></script>
 </body>
 </html>

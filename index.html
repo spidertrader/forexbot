@@ -5,14 +5,431 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VodiyTrade - Forex Akademiyasi</title>
     
-    <!-- Tashqi CSS fayli -->
-    <link rel="stylesheet" href="style.css">
-    
     <!-- Ikonkalar uchun kutubxona (Font Awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     
     <!-- Animatsiyalar uchun kutubxona (AOS) -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* Google Fonts import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        /* Umumiy sozlamalar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-color: #06b6d4; /* cyan-500 */
+            --secondary-color: #0e7490; /* cyan-700 */
+            --bg-dark: #0f172a; /* slate-900 */
+            --bg-light: #1e293b; /* slate-800 */
+            --text-light: #f1f5f9; /* slate-100 */
+            --text-dark: #94a3b8; /* slate-400 */
+            --border-color: #334155; /* slate-700 */
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-dark);
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+            transform: translateY(-3px);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            padding-top: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            max-width: 50%;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin: 20px 0 30px 0;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .hero-buttons a {
+            display: inline-block;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+        }
+
+        /* Kurslar bo'limi */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .course-card p {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .course-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Kalkulyator */
+        .calculator-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .calculator-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .calculator-form input {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .calculator-result h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .calculator-result p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .calculator-result span {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Brokerlar bo'limi */
+        .brokers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .broker-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .broker-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .broker-logo {
+            height: 40px;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+
+        .broker-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .broker-card p {
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            min-height: 50px;
+        }
+
+        .all-brokers-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Jamoa bo'limi */
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .team-member {
+            text-align: center;
+        }
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .team-member h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .team-member p {
+            color: var(--text-dark);
+        }
+
+        /* Aloqa bo'limi */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .contact-info i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        .social-links a {
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            margin-right: 20px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        .contact-map iframe {
+            border-radius: 15px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-dark);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive dizayn */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--bg-dark);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: left 0.5s ease;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .nav-links li {
+                margin: 20px 0;
+            }
+            .menu-btn {
+                display: block;
+            }
+            #hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+            .hero-content {
+                max-width: 100%;
+            }
+            .hero-buttons {
+                align-items: center;
+            }
+            .hero-image {
+                margin-top: 40px;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .calculator-wrapper, .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -76,7 +493,7 @@
         </div>
     </section>
 
-    <!-- Intensiv Kurs bo'limi (YANGI) -->
+    <!-- Intensiv Kurs bo'limi -->
     <section id="intensive-course" class="container">
         <h2 class="section-title" data-aos="fade-up">Telegram Botdagi Intensiv Kurs</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">O'zingizga qulay vaqtda, to'g'ridan-to'g'ri Telegramda bilim oling.</p>
@@ -142,23 +559,20 @@
         <h2 class="section-title" data-aos="fade-up">Ishonchli Brokerlar</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Biz tavsiya qiladigan TOP-3 brokerlar reytingi.</p>
         <div class="brokers-grid">
-            <!-- Broker 1 -->
             <div class="broker-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://placehold.co/150x50/1e293b/ffffff?text=Broker+Logo" alt="Broker Logo" class="broker-logo">
+                <img src="https://placehold.co/150x50/1e293b/ffffff?text=Exness" alt="Exness Logo" class="broker-logo">
                 <h3>Exness</h3>
                 <p>Past spredlar va tezkor pul yechish imkoniyatlari bilan mashhur.</p>
                 <a href="#" class="btn btn-secondary" target="_blank">Saytga o'tish</a>
             </div>
-             <!-- Broker 2 -->
             <div class="broker-card" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://placehold.co/150x50/1e293b/ffffff?text=Broker+Logo" alt="Broker Logo" class="broker-logo">
+                <img src="https://placehold.co/150x50/1e293b/ffffff?text=RoboForex" alt="RoboForex Logo" class="broker-logo">
                 <h3>RoboForex</h3>
                 <p>Bonus dasturlari va yangi boshlovchilar uchun qulay sharoitlar.</p>
                 <a href="#" class="btn btn-secondary" target="_blank">Saytga o'tish</a>
             </div>
-             <!-- Broker 3 -->
             <div class="broker-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://placehold.co/150x50/1e293b/ffffff?text=Broker+Logo" alt="Broker Logo" class="broker-logo">
+                <img src="https://placehold.co/150x50/1e293b/ffffff?text=IC+Markets" alt="IC Markets Logo" class="broker-logo">
                 <h3>IC Markets</h3>
                 <p>Professional treyderlar uchun xom spredlar (raw spread) taklif qiladi.</p>
                 <a href="#" class="btn btn-secondary" target="_blank">Saytga o'tish</a>
@@ -178,13 +592,43 @@
     <!-- Jamoa bo'limi -->
     <section id="team" class="container">
         <h2 class="section-title" data-aos="fade-up">Bizning Jamoa</h2>
-        <!-- Jamoa a'zolari -->
+        <div class="team-grid">
+            <div class="team-member" data-aos="zoom-in">
+                <img src="https://placehold.co/200x200/1f2937/ffffff?text=Rasm" alt="Jamoa a'zosi">
+                <h4>Ism Familiya</h4>
+                <p>Akademiya asoschisi</p>
+            </div>
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://placehold.co/200x200/1f2937/ffffff?text=Rasm" alt="Jamoa a'zosi">
+                <h4>Ism Familiya</h4>
+                <p>Bosh treyder, Mentor</p>
+            </div>
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://placehold.co/200x200/1f2937/ffffff?text=Rasm" alt="Jamoa a'zosi">
+                <h4>Ism Familiya</h4>
+                <p>Marketing menejeri</p>
+            </div>
+        </div>
     </section>
 
     <!-- Aloqa va Manzil -->
     <section id="contact" class="container">
         <h2 class="section-title" data-aos="fade-up">Biz Bilan Aloqa</h2>
-        <!-- Aloqa ma'lumotlari -->
+        <div class="contact-wrapper">
+            <div class="contact-info" data-aos="fade-right">
+                <h3>Bizning Manzil:</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Farg'ona sh, O'zbekiston ko'ch, 1-uy</p>
+                <h3>Ijtimoiy tarmoqlar:</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="contact-map" data-aos="fade-left">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97247.36199464883!2d71.71443934335937!3d40.389632700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb834303532a79%3A0x74f173d320551342!2sFergana%2C%20Fergana%20Region%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1724597453673!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -194,9 +638,124 @@
         </div>
     </footer>
 
-    <!-- Tashqi JS fayllar -->
+
+    <!-- Tashqi JS kutubxonalari -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    
+    <!-- Asosiy skript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // AOS (Animate on Scroll) kutubxonasini ishga tushirish
+            AOS.init({
+                duration: 1000,
+                once: true,
+            });
+
+            // Mobil menyu
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Murakkab foiz kalkulyatori logikasi
+            const initialInput = document.getElementById('initial');
+            const monthlyInput = document.getElementById('monthly');
+            const rateInput = document.getElementById('rate');
+            const monthsInput = document.getElementById('months');
+            const calculateBtn = document.getElementById('calculate-btn');
+            const totalBalanceEl = document.getElementById('total-balance');
+            const totalProfitEl = document.getElementById('total-profit');
+            const chartCanvas = document.getElementById('growthChart');
+            let growthChart;
+
+            function calculateCompoundInterest() {
+                const P = parseFloat(initialInput.value);
+                const c = parseFloat(monthlyInput.value);
+                const r = parseFloat(rateInput.value) / 100;
+                const n_months = parseInt(monthsInput.value);
+
+                if (isNaN(P) || isNaN(c) || isNaN(r) || isNaN(n_months)) {
+                    // alert o'rniga konsolga xabar chiqarish yaxshiroq
+                    console.error("Kalkulyator uchun barcha maydonlar to'ldirilishi kerak!");
+                    return;
+                }
+
+                let total = P;
+                const monthlyData = [];
+                const labels = [];
+                let totalDeposits = P;
+
+                for (let i = 1; i <= n_months; i++) {
+                    total += c;
+                    totalDeposits += c;
+                    total *= (1 + r);
+                    
+                    monthlyData.push(total.toFixed(2));
+                    labels.push(`${i}-oy`);
+                }
+                
+                const totalProfit = total - totalDeposits;
+
+                totalBalanceEl.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                totalProfitEl.textContent = `$${totalProfit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                
+                updateChart(monthlyData, labels, n_months);
+            }
+
+            function updateChart(data, labels, totalMonths) {
+                if (growthChart) {
+                    growthChart.destroy();
+                }
+
+                growthChart = new Chart(chartCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Sarmoya O\'sishi',
+                            data: data,
+                            backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                            borderColor: 'rgba(6, 182, 212, 1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: totalMonths > 50 ? 0 : 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) { return '$' + value.toLocaleString(); },
+                                    color: '#94a3b8'
+                                }
+                            },
+                            x: {
+                               ticks: {
+                                   color: '#94a3b8',
+                                   maxTicksLimit: totalMonths > 12 ? (window.innerWidth < 768 ? 4 : 8) : 12
+                               }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false }
+                        }
+                    }
+                });
+            }
+
+            calculateBtn.addEventListener('click', calculateCompoundInterest);
+            
+            // Sahifa yuklanganda birinchi marta hisoblash
+            calculateCompoundInterest();
+        });
+    </script>
 </body>
 </html>

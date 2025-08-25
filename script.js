@@ -1,53 +1,115 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Navigatsiya havolalari uchun silliq skrollashni qo'shish
-    // Add smooth scrolling for navigation links
-    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault(); // Standart harakatni bekor qilish
+document.addEventListener('DOMContentLoaded', function() {
 
-            const targetId = this.getAttribute('href'); // Havolaning maqsad ID'sini olish
-            const targetElement = document.querySelector(targetId); // Maqsad elementni topish
-
-            if (targetElement) {
-                // Elementga silliq skrollash
-                // Smooth scroll to the target element
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
+    // AOS (Animate on Scroll) kutubxonasini ishga tushirish
+    AOS.init({
+        duration: 1000, // animatsiya davomiyligi
+        once: true, // animatsiya faqat bir marta ishlaydi
     });
 
-    // RoboForex kotirovkalar tasmasi iframe'ining kengligini moslashtirish
-    // Adjust the width of the RoboForex quotes tape iframe
-    const quotesTapeIframe = document.querySelector('.quotes-tape-wrapper iframe');
-    if (quotesTapeIframe) {
-        // Ota elementining kengligini olib, iframe'ga o'rnatish
-        // Get the width of the parent element and set it to the iframe
-        const parentWidth = quotesTapeIframe.parentElement.offsetWidth;
-        quotesTapeIframe.style.width = `${parentWidth}px`;
+    // Mobil menyu
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Murakkab foiz kalkulyatori logikasi
+    const initialInput = document.getElementById('initial');
+    const monthlyInput = document.getElementById('monthly');
+    const rateInput = document.getElementById('rate');
+    const yearsInput = document.getElementById('years');
+    const calculateBtn = document.getElementById('calculate-btn');
+    const totalBalanceEl = document.getElementById('total-balance');
+    const totalProfitEl = document.getElementById('total-profit');
+    const chartCanvas = document.getElementById('growthChart');
+    let growthChart;
+
+    function calculateCompoundInterest() {
+        const P = parseFloat(initialInput.value);
+        const c = parseFloat(monthlyInput.value);
+        const r = parseFloat(rateInput.value) / 100;
+        const t = parseInt(yearsInput.value);
+        const n = t * 12; // oylar soni
+
+        if (isNaN(P) || isNaN(c) || isNaN(r) || isNaN(t)) {
+            alert("Iltimos, barcha maydonlarni to'ldiring!");
+            return;
+        }
+
+        let total = P;
+        const yearlyData = [];
+        let totalDeposits = P;
+
+        for (let i = 1; i <= n; i++) {
+            total += c;
+            totalDeposits += c;
+            total *= (1 + r);
+            
+            if (i % 12 === 0 || i === n) {
+                yearlyData.push(total.toFixed(2));
+            }
+        }
+        
+        const totalProfit = total - totalDeposits;
+
+        totalBalanceEl.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        totalProfitEl.textContent = `$${totalProfit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        
+        updateChart(yearlyData, t);
     }
 
-    // Iframe'larning responsive bo'lishini ta'minlash (agar zarur bo'lsa)
-    // Ensure iframes are responsive (if necessary)
-    // CSSda iframe-responsive-wrapper orqali allaqachon hal qilingan,
-    // lekin agar qo'shimcha JS logikasi kerak bo'lsa, shu yerga qo'shiladi.
-    // This is largely handled by CSS with iframe-responsive-wrapper,
-    // but additional JS logic can be added here if needed.
-    function adjustIframeHeights() {
-        document.querySelectorAll('.iframe-responsive-wrapper iframe').forEach(iframe => {
-            // Agar iframe o'zining balandligini dinamik ravishda o'zgartirishi kerak bo'lsa
-            // If the iframe needs to dynamically adjust its height
-            // Hozirda CSS orqali qat'iy balandlik berilgan, bu funksiya ko'proq dinamik kontent uchun
-            // Currently, a fixed height is given via CSS; this function is more for dynamic content
-            // Example: iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+    function updateChart(data, years) {
+        const labels = Array.from({ length: years }, (_, i) => `${i + 1}-yil`);
+
+        if (growthChart) {
+            growthChart.destroy();
+        }
+
+        growthChart = new Chart(chartCanvas, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Sarmoya O\'sishi',
+                    data: data,
+                    backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                    borderColor: 'rgba(6, 182, 212, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            },
+                            color: '#94a3b8'
+                        }
+                    },
+                    x: {
+                       ticks: {
+                           color: '#94a3b8'
+                       }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
         });
     }
 
-    // Oyna o'lchami o'zgarganda iframe balandligini sozlash
-    // Adjust iframe heights on window resize
-    window.addEventListener('resize', adjustIframeHeights);
-    // Sahifa yuklanganda ham sozlash
-    // Also adjust on page load
-    adjustIframeHeights();
+    calculateBtn.addEventListener('click', calculateCompoundInterest);
+    
+    // Sahifa yuklanganda birinchi marta hisoblash
+    calculateCompoundInterest();
 });

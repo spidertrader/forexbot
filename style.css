@@ -1,163 +1,106 @@
-/* Google Fonts import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+document.addEventListener('DOMContentLoaded', function() {
 
-/* Umumiy sozlamalar */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-    scroll-behavior: smooth;
-}
+    // AOS (Animate on Scroll) kutubxonasini ishga tushirish
+    AOS.init({
+        duration: 1000,
+        once: true,
+    });
 
-:root {
-    --primary-color: #06b6d4; /* cyan-500 */
-    --secondary-color: #0e7490; /* cyan-700 */
-    --bg-dark: #0f172a; /* slate-900 */
-    --bg-light: #1e293b; /* slate-800 */
-    --text-light: #f1f5f9; /* slate-100 */
-    --text-dark: #94a3b8; /* slate-400 */
-    --border-color: #334155; /* slate-700 */
-}
+    // Mobil menyu
+    // ... (mobil menyu kodi o'zgarishsiz) ...
 
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-}
+    // Murakkab foiz kalkulyatori logikasi (YANGILANGAN)
+    const initialInput = document.getElementById('initial');
+    const monthlyInput = document.getElementById('monthly');
+    const rateInput = document.getElementById('rate');
+    const monthsInput = document.getElementById('months'); // O'zgartirildi: yearsInput -> monthsInput
+    const calculateBtn = document.getElementById('calculate-btn');
+    const totalBalanceEl = document.getElementById('total-balance');
+    const totalProfitEl = document.getElementById('total-profit');
+    const chartCanvas = document.getElementById('growthChart');
+    let growthChart;
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+    function calculateCompoundInterest() {
+        const P = parseFloat(initialInput.value);
+        const c = parseFloat(monthlyInput.value);
+        const r = parseFloat(rateInput.value) / 100;
+        const n_months = parseInt(monthsInput.value); // O'zgartirildi: yillardan oylarga
 
-section {
-    padding: 80px 0;
-}
+        if (isNaN(P) || isNaN(c) || isNaN(r) || isNaN(n_months)) {
+            alert("Iltimos, barcha maydonlarni to'ldiring!");
+            return;
+        }
 
-/* ... (Header va nav stillari o'zgarishsiz qoladi) ... */
+        let total = P;
+        const monthlyData = [];
+        const labels = [];
+        let totalDeposits = P;
 
-/* Hero Section */
-#hero {
-    padding-top: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 100vh;
-}
+        for (let i = 1; i <= n_months; i++) {
+            total += c;
+            totalDeposits += c;
+            total *= (1 + r);
+            
+            monthlyData.push(total.toFixed(2));
+            labels.push(`${i}-oy`);
+        }
+        
+        const totalProfit = total - totalDeposits;
 
-.hero-content {
-    max-width: 50%;
-}
-
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 900;
-    line-height: 1.2;
-}
-
-.hero-description {
-    font-size: 1.2rem;
-    color: var(--text-dark);
-    margin: 20px 0 30px 0;
-}
-
-/* O'ZGARTIRILDI: Tugmalar endi ustma-ust joylashadi */
-.hero-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-}
-
-.hero-buttons a {
-    display: inline-block; /* To'liq kenglikni egallamasligi uchun */
-}
-
-.hero-image img {
-    max-width: 100%;
-    border-radius: 20px;
-}
-
-/* Kurslar bo'limi (Intensiv va Dasturlar uchun umumiy) */
-.courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-/* ... (course-card stillari o'zgarishsiz) ... */
-
-/* Kalkulyator */
-/* ... (kalkulyator stillari o'zgarishsiz) ... */
-
-/* YANGI: Brokerlar bo'limi */
-.brokers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-bottom: 50px;
-}
-
-.broker-card {
-    background: var(--bg-light);
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid var(--border-color);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.broker-card:hover {
-    transform: translateY(-5px);
-}
-
-.broker-logo {
-    height: 40px;
-    margin-bottom: 20px;
-    object-fit: contain;
-}
-
-.broker-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-}
-
-.broker-card p {
-    color: var(--text-dark);
-    margin-bottom: 25px;
-    min-height: 50px; /* Kartochkalar balandligini bir xil qilish uchun */
-}
-
-.all-brokers-link {
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* Boshqa bo'limlar (Jamoa, Aloqa, Footer) stillari o'zgarishsiz */
-/* ... */
-
-/* Responsive dizayn */
-@media (max-width: 768px) {
-    /* ... (mobil menyu stillari o'zgarishsiz) ... */
-    #hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 120px;
+        totalBalanceEl.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        totalProfitEl.textContent = `$${totalProfit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        
+        updateChart(monthlyData, labels, n_months);
     }
-    .hero-content {
-        max-width: 100%;
+
+    function updateChart(data, labels, totalMonths) {
+        if (growthChart) {
+            growthChart.destroy();
+        }
+
+        growthChart = new Chart(chartCanvas, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Sarmoya O\'sishi',
+                    data: data,
+                    backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                    borderColor: 'rgba(6, 182, 212, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: totalMonths > 50 ? 0 : 3 // Agar oylar ko'p bo'lsa, nuqtalarni yashirish
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) { return '$' + value.toLocaleString(); },
+                            color: '#94a3b8'
+                        }
+                    },
+                    x: {
+                       ticks: {
+                           color: '#94a3b8',
+                           // Grafik chiroyli chiqishi uchun yozuvlarni avtomatik o'tkazib yuborish
+                           maxTicksLimit: totalMonths > 12 ? (window.innerWidth < 768 ? 4 : 8) : 12
+                       }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
     }
-    /* O'ZGARTIRILDI: Tugmalarni markazga keltirish */
-    .hero-buttons {
-        align-items: center;
-    }
-    .hero-image {
-        margin-top: 40px;
-    }
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    .calculator-wrapper, .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-}
+
+    calculateBtn.addEventListener('click', calculateCompoundInterest);
+    
+    // Sahifa yuklanganda birinchi marta hisoblash
+    calculateCompoundInterest();
+});

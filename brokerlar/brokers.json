@@ -1,0 +1,92 @@
+[
+    {
+        "id": "exness",
+        "name": "Exness",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=Exness",
+        "description": "Past spredlar va tezkor pul yechish.",
+        "link": "#",
+        "likes": 1250,
+        "dislikes": 45
+    },
+    {
+        "id": "icmarkets",
+        "name": "IC Markets",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=IC+Markets",
+        "description": "Professional treyderlar uchun xom spredlar.",
+        "link": "#",
+        "likes": 1100,
+        "dislikes": 30
+    },
+    {
+        "id": "fbs",
+        "name": "FBS",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=FBS",
+        "description": "Katta bonuslar va musobaqalar.",
+        "link": "#",
+        "likes": 980,
+        "dislikes": 80
+    },
+    {
+        "id": "octafx",
+        "name": "OctaFX",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=OctaFX",
+        "description": "Mobil treyding uchun qulay platforma.",
+        "link": "#",
+        "likes": 950,
+        "dislikes": 65
+    },
+    {
+        "id": "xm",
+        "name": "XM",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=XM",
+        "description": "Sifatli o'quv materiallari va vebinarlar.",
+        "link": "#",
+        "likes": 870,
+        "dislikes": 55
+    },
+    {
+        "id": "pepperstone",
+        "name": "Pepperstone",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=Pepperstone",
+        "description": "Tezkor buyruqlar ijrosi (execution).",
+        "link": "#",
+        "likes": 820,
+        "dislikes": 25
+    },
+    {
+        "id": "tickmill",
+        "name": "Tickmill",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=Tickmill",
+        "description": "Pro hisoblarida juda past komissiyalar.",
+        "link": "#",
+        "likes": 750,
+        "dislikes": 40
+    },
+    {
+        "id": "fxpro",
+        "name": "FxPro",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=FxPro",
+        "description": "Ko'plab savdo platformalarini taklif qiladi.",
+        "link": "#",
+        "likes": 710,
+        "dislikes": 60
+    },
+    {
+        "id": "litefinance",
+        "name": "LiteFinance",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=LiteFinance",
+        "description": "Ijtimoiy treyding (copy-trading) imkoniyati.",
+        "link": "#",
+        "likes": 680,
+        "dislikes": 75
+    },
+    {
+        "id": "alpari",
+        "name": "Alpari",
+        "logo": "https://placehold.co/150x50/1e293b/ffffff?text=Alpari",
+        "description": "MDHda eng eski va mashhur brokerlardan biri.",
+        "link": "#",
+        "likes": 650,
+        "dislikes": 90
+    }
+]

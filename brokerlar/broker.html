@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brokerlar Reytingi - VodiyTrade</title>
+    
+    <!-- Ikonkalar uchun kutubxona (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Animatsiyalar uchun kutubxona (AOS) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* Google Fonts import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        /* Umumiy sozlamalar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-color: #06b6d4;
+            --secondary-color: #0e7490;
+            --bg-dark: #0f172a;
+            --bg-light: #1e293b;
+            --text-light: #f1f5f9;
+            --text-dark: #94a3b8;
+            --border-color: #334155;
+            --green-color: #22c55e;
+            --red-color: #ef4444;
+            --gold-color: #f59e0b;
+            --silver-color: #a8a29e;
+            --bronze-color: #a16207;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .back-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Asosiy kontent */
+        main {
+            padding: 80px 0;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-dark);
+            max-width: 600px;
+            margin: 0 auto 10px auto;
+        }
+        
+        .vote-cta {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin: 0 auto 80px auto;
+            font-weight: 500;
+        }
+
+        /* Tavsiya etiladigan broker */
+        .recommended-broker {
+            background: linear-gradient(145deg, var(--bg-light), #2a3a52);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+            margin-bottom: 80px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .recommended-broker-logo img {
+            max-width: 200px;
+            border-radius: 10px;
+        }
+
+        .recommended-broker-info h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        .recommended-broker-info .tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .recommended-broker-info p {
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+
+        /* Brokerlar ro'yxati */
+        .broker-list-item {
+            background: var(--bg-light);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .broker-list-item:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.02);
+        }
+        
+        .broker-main-content {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 20px;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .broker-list-logo img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .broker-list-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .broker-list-info h3 a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .broker-list-info h3 a:hover {
+            color: var(--primary-color);
+        }
+        
+        .broker-list-info p {
+            color: var(--text-dark);
+        }
+        
+        .broker-rating {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .rating-btn {
+            background: var(--border-color);
+            border: none;
+            color: var(--text-dark);
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .rating-btn:hover {
+            background: #475569; /* slate-600 */
+        }
+        
+        .rating-btn.liked {
+            background: var(--green-color);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+        }
+        
+        .rating-btn.disliked {
+            background: var(--red-color);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .rating-btn span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* TOP 3 Dizayni */
+        .top-1 { border-left: 5px solid var(--gold-color); }
+        .top-2 { border-left: 5px solid var(--silver-color); }
+        .top-3 { border-left: 5px solid var(--bronze-color); }
+
+        .top-broker::before {
+            content: '\f521'; /* Font Awesome crown icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+        .top-1::before { color: var(--gold-color); }
+        .top-2::before { color: var(--silver-color); }
+        .top-3::before { color: var(--bronze-color); }
+
+        /* Ochiladigan ma'lumotlar */
+        .broker-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0 20px;
+        }
+        
+        .broker-list-item.active .broker-details {
+            max-height: 500px; /* Yetarlicha balandlik */
+            padding: 10px 20px 20px 20px;
+        }
+        
+        .broker-details-content {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .broker-details-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .broker-details-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .broker-details-content ul li {
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+        .broker-details-content ul li i {
+            margin-right: 10px;
+        }
+        .pros li i { color: var(--green-color); }
+        .cons li i { color: var(--red-color); }
+        
+        /* MOBIL QURILMALAR UCHUN O'ZGARISHLAR */
+        @media (max-width: 768px) {
+            .page-title { font-size: 2.5rem; }
+            
+            .recommended-broker {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .recommended-broker-logo {
+                margin: 0 auto 20px auto;
+            }
+            
+            .broker-main-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+            }
+            .broker-list-logo {
+                width: 120px;
+                margin-bottom: 10px;
+            }
+            .broker-rating {
+                margin-top: 10px;
+            }
+
+            .broker-details-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="/index.html" class="logo">Vodiy<span>Trade</span></a>
+            <a href="/index.html" class="back-link">&larr; Bosh Sahifaga</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title" data-aos="fade-up">Brokerlar Reytingi</h1>
+        <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Muvaffaqiyatli savdo uchun to'g'ri broker tanlash juda muhim. Quyida bizning jamoa tomonidan sinovdan o'tgan va tavsiya etiladigan brokerlar ro'yxati keltirilgan.
+        </p>
+        <p class="vote-cta" data-aos="fade-up" data-aos-delay="200">
+            O'z ovozingiz bilan reytingni shakllantirishga yordam bering!
+        </p>
+
+        <!-- Tavsiya etiladigan broker -->
+        <section class="recommended-broker" data-aos="zoom-in">
+            <div class="recommended-broker-logo">
+                <img src="https://placehold.co/400x200/1e293b/ffffff?text=RoboForex" alt="RoboForex Logo">
+            </div>
+            <div class="recommended-broker-info">
+                <span class="tag">BIZ TAVSIYA QILAMIZ</span>
+                <h2>RoboForex</h2>
+                <p>
+                    RoboForex - yangi boshlovchilardan tortib professional treyderlargacha mos keladigan, ishonchliligi va qulay shartlari bilan ajralib turadigan broker. Bonus dasturlari, sent hisoblari va 1:2000 gacha bo'lgan kredit yelkasi kabi afzalliklari mavjud.
+                </p>
+                <a href="#" class="btn btn-primary" target="_blank">Hisob Ochish</a>
+            </div>
+        </section>
+
+        <!-- Top 10 ro'yxat -->
+        <section id="broker-list-container">
+            <!-- Brokerlar ro'yxati shu yerga JavaScript orqali joylanadi -->
+        </section>
+    </main>
+
+    <!-- JS Kutubxonalari -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+            });
+
+            const brokersData = [
+                { "id": "exness", "name": "Exness", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=Exness", "description": "Past spredlar va tezkor pul yechish.", "link": "#", "likes": 1250, "dislikes": 45, "details": { "pros": ["Bir zumda pul yechish", "MT4/MT5 platformalari", "24/7 qo'llab-quvvatlash"], "cons": ["Bonus dasturlari kam"] } },
+                { "id": "roboforex", "name": "RoboForex", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=RoboForex", "description": "Bonus dasturlari va yangi boshlovchilar uchun qulay.", "link": "#", "likes": 1150, "dislikes": 60, "details": { "pros": ["30$ depozitsiz bonus", "Sent hisoblari mavjud", "CopyFX ijtimoiy treyding"], "cons": ["Spredlar o'rtachadan yuqori bo'lishi mumkin"] } },
+                { "id": "icmarkets", "name": "IC Markets", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=IC+Markets", "description": "Professional treyderlar uchun xom spredlar.", "link": "#", "likes": 1100, "dislikes": 30, "details": { "pros": ["Juda past spredlar (0.0 pipdan)", "Tezkor ijro (execution)", "Regulyatsiyalangan broker"], "cons": ["Minimal depozit $200"] } },
+                { "id": "fbs", "name": "FBS", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=FBS", "description": "Katta bonuslar va musobaqalar.", "link": "#", "likes": 980, "dislikes": 80, "details": { "pros": ["140$ gacha bonus", "1:3000 kredit yelkasi", "Ko'plab aksiyalar"], "cons": ["Offshor regulyatsiya"] } },
+                { "id": "octafx", "name": "OctaFX", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=OctaFX", "description": "Mobil treyding uchun qulay platforma.", "link": "#", "likes": 950, "dislikes": 65, "details": { "pros": ["Qulay mobil ilova", "Copy-trading xizmati", "Depozit uchun 50% bonus"], "cons": ["Instrumentlar tanlovi cheklangan"] } },
+                { "id": "xm", "name": "XM", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=XM", "description": "Sifatli o'quv materiallari va vebinarlar.", "link": "#", "likes": 870, "dislikes": 55, "details": { "pros": ["Kuchli regulyatsiya", "Bepul o'quv resurslari", "Depozit va yechish uchun komissiya yo'q"], "cons": ["Spredlar raqobatchilarga qaraganda kengroq"] } },
+                { "id": "pepperstone", "name": "Pepperstone", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=Pepperstone", "description": "Tezkor buyruqlar ijrosi (execution).", "link": "#", "likes": 820, "dislikes": 25, "details": { "pros": ["Juda tezkor ijro", "cTrader platformasi mavjud", "Ko'plab instrumentlar"], "cons": ["Bonuslar deyarli yo'q"] } },
+                { "id": "tickmill", "name": "Tickmill", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=Tickmill", "description": "Pro hisoblarida juda past komissiyalar.", "link": "#", "likes": 750, "dislikes": 40, "details": { "pros": ["Eng past komissiyalardan biri", "FCA regulyatsiyasi", "Scalping va EA uchun ruxsat"], "cons": ["Mijozlarga xizmat ko'rsatish sekinroq"] } },
+                { "id": "fxpro", "name": "FxPro", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=FxPro", "description": "Ko'plab savdo platformalarini taklif qiladi.", "link": "#", "likes": 710, "dislikes": 60, "details": { "pros": ["MT4, MT5, cTrader, FxPro Edge", "NDD (No Dealing Desk) ijrosi", "FCA va CySEC regulyatsiyasi"], "cons": ["Yechib olish uchun komissiya bo'lishi mumkin"] } },
+                { "id": "alpari", "name": "Alpari", "logo": "https://placehold.co/150x50/1e293b/ffffff?text=Alpari", "description": "MDHda eng eski va mashhur brokerlardan biri.", "link": "#", "likes": 650, "dislikes": 90, "details": { "pros": ["Uzoq yillik tajriba", "PAMM hisoblari", "Tuzilgan investitsiya portfellari"], "cons": ["Xalqaro regulyatsiyasi kuchsizroq"] } }
+            ];
+
+            const container = document.getElementById('broker-list-container');
+            let votes = JSON.parse(localStorage.getItem('broker_votes')) || {};
+
+            function renderBrokers() {
+                container.innerHTML = ''; // Ro'yxatni tozalash
+
+                // Brokerlarni reyting bo'yicha saralash
+                const sortedBrokers = brokersData.sort((a, b) => {
+                    const scoreA = (votes[a.id]?.likes ?? a.likes) - (votes[a.id]?.dislikes ?? a.dislikes);
+                    const scoreB = (votes[b.id]?.likes ?? b.likes) - (votes[b.id]?.dislikes ?? b.dislikes);
+                    return scoreB - scoreA;
+                });
+
+                sortedBrokers.forEach((broker, index) => {
+                    let currentLikes = votes[broker.id]?.likes ?? broker.likes;
+                    let currentDislikes = votes[broker.id]?.dislikes ?? broker.dislikes;
+
+                    const brokerElement = document.createElement('div');
+                    brokerElement.className = 'broker-list-item';
+                    brokerElement.setAttribute('data-aos', 'fade-up');
+                    
+                    if (index < 3) {
+                        brokerElement.classList.add('top-broker', `top-${index + 1}`);
+                    }
+
+                    brokerElement.innerHTML = `
+                        <div class="broker-main-content">
+                            <div class="broker-list-logo">
+                                <img src="${broker.logo}" alt="${broker.name} Logo">
+                            </div>
+                            <div class="broker-list-info">
+                                <h3><a href="${broker.link}" target="_blank" rel="noopener noreferrer">${broker.name}</a></h3>
+                                <p>${broker.description}</p>
+                            </div>
+                            <div class="broker-rating">
+                                <button class="rating-btn like-btn" data-id="${broker.id}">👍 <span id="likes-${broker.id}">${currentLikes}</span></button>
+                                <button class="rating-btn dislike-btn" data-id="${broker.id}">👎 <span id="dislikes-${broker.id}">${currentDislikes}</span></button>
+                            </div>
+                        </div>
+                        <div class="broker-details">
+                            <div class="broker-details-content">
+                                <div class="pros-cons-wrapper">
+                                    <div class="pros">
+                                        <h4>Afzalliklari</h4>
+                                        <ul>
+                                            ${broker.details.pros.map(pro => `<li><i class="fas fa-check-circle"></i> ${pro}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                    <div class="cons">
+                                        <h4>Kamchiliklari</h4>
+                                        <ul>
+                                            ${broker.details.cons.map(con => `<li><i class="fas fa-times-circle"></i> ${con}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(brokerElement);
+                    
+                    if (votes[broker.id]?.voted === 'like') {
+                        brokerElement.querySelector('.like-btn').classList.add('liked');
+                    } else if (votes[broker.id]?.voted === 'dislike') {
+                        brokerElement.querySelector('.dislike-btn').classList.add('disliked');
+                    }
+                });
+            }
+            
+            renderBrokers();
+
+            container.addEventListener('click', function(e) {
+                const ratingBtn = e.target.closest('.rating-btn');
+                const brokerItem = e.target.closest('.broker-list-item');
+
+                if (ratingBtn) {
+                    e.stopPropagation(); // Kartochka ochilib ketmasligi uchun
+                    const brokerId = ratingBtn.dataset.id;
+                    const isLikeBtn = ratingBtn.classList.contains('like-btn');
+                    
+                    votes = JSON.parse(localStorage.getItem('broker_votes')) || {};
+                    
+                    if (!votes[brokerId]) {
+                        votes[brokerId] = { 
+                            likes: brokersData.find(b => b.id === brokerId).likes, 
+                            dislikes: brokersData.find(b => b.id === brokerId).dislikes, 
+                            voted: null 
+                        };
+                    }
+
+                    const currentVote = votes[brokerId].voted;
+
+                    if (isLikeBtn) {
+                        if (currentVote === 'like') return;
+                        votes[brokerId].likes++;
+                        if (currentVote === 'dislike') votes[brokerId].dislikes--;
+                        votes[brokerId].voted = 'like';
+                    } else {
+                        if (currentVote === 'dislike') return;
+                        votes[brokerId].dislikes++;
+                        if (currentVote === 'like') votes[brokerId].likes--;
+                        votes[brokerId].voted = 'dislike';
+                    }
+                    
+                    localStorage.setItem('broker_votes', JSON.stringify(votes));
+                    renderBrokers();
+                } 
+                else if (brokerItem && !e.target.closest('a')) {
+                    brokerItem.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

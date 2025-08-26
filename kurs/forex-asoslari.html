@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Asoslari - VodiyTrade Intensiv</title>
+    
+    <!-- Ikonkalar uchun kutubxona (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Animatsiyalar uchun kutubxona (AOS) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* Google Fonts import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        /* Umumiy sozlamalar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary-color: #06b6d4;
+            --secondary-color: #0e7490;
+            --bg-dark: #0f172a;
+            --bg-light: #1e293b;
+            --text-light: #f1f5f9;
+            --text-dark: #94a3b8;
+            --border-color: #334155;
+            --green-color: #22c55e;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .back-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Asosiy kontent */
+        main {
+            padding: 60px 0;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-dark);
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        /* Darslar Moduli */
+        .module {
+            background: var(--bg-light);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .module-header {
+            padding: 20px 25px;
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .module-header h2 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .module-header h2 i {
+            color: var(--primary-color);
+        }
+
+        .lesson-list {
+            list-style: none;
+        }
+        
+        .lesson-item a {
+            display: flex;
+            align-items: center;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .lesson-item a:hover {
+            background-color: rgba(6, 182, 212, 0.1);
+        }
+        
+        .lesson-number {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-right: 20px;
+            width: 30px;
+        }
+        
+        .lesson-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+        
+        .lesson-status {
+            font-size: 1.5rem;
+            color: var(--border-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="/index.html" class="logo">Vodiy<span>Trade</span></a>
+            <a href="/index.html" class="back-link">&larr; Bosh Sahifaga</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title" data-aos="fade-up">Forex Asoslari</h1>
+        <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Ushbu intensiv kursda siz Forex bozorining poydevorini tashkil etuvchi barcha fundamental bilim va ko'nikmalarni egallaysiz.
+        </p>
+
+        <!-- Modul 1: Kirish -->
+        <div class="module" data-aos="fade-up" data-aos-delay="200">
+            <div class="module-header">
+                <h2><i class="fas fa-flag"></i> Modul 1: Bozorga Kirish</h2>
+            </div>
+            <ul class="lesson-list">
+                <li class="lesson-item"><a href="dars1.html"><span class="lesson-number">1.1</span> <span class="lesson-title">Forex Bozori Nima?</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars2.html"><span class="lesson-number">1.2</span> <span class="lesson-title">Bozor Ishtirokchilari Kimlar?</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars3.html"><span class="lesson-number">1.3</span> <span class="lesson-title">Savdo Sessiyalari (London, Nyu-York, Tokio)</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+            </ul>
+        </div>
+
+        <!-- Modul 2: Asosiy Tushunchalar -->
+        <div class="module" data-aos="fade-up" data-aos-delay="300">
+            <div class="module-header">
+                <h2><i class="fas fa-book"></i> Modul 2: Asosiy Tushunchalar</h2>
+            </div>
+            <ul class="lesson-list">
+                <li class="lesson-item"><a href="dars4.html"><span class="lesson-number">2.1</span> <span class="lesson-title">Valyuta Juftliklari (Major, Minor, Ekzotik)</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars5.html"><span class="lesson-number">2.2</span> <span class="lesson-title">"Pip" va "Punkte" Nima?</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars6.html"><span class="lesson-number">2.3</span> <span class="lesson-title">Lot Hajmi: Standart, Mini, Mikro</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars7.html"><span class="lesson-number">2.4</span> <span class="lesson-title">Spred, Komissiya va Svop (Swap)</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars8.html"><span class="lesson-number">2.5</span> <span class="lesson-title">Kredit Yelkasi (Leverage) va Marja</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+            </ul>
+        </div>
+        
+        <!-- Modul 3: Savdoni Boshlash -->
+        <div class="module" data-aos="fade-up" data-aos-delay="400">
+            <div class="module-header">
+                <h2><i class="fas fa-desktop"></i> Modul 3: Savdoni Boshlash</h2>
+            </div>
+            <ul class="lesson-list">
+                <li class="lesson-item"><a href="dars9.html"><span class="lesson-number">3.1</span> <span class="lesson-title">Broker Tanlash: Nimalarga E'tibor Berish Kerak?</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars10.html"><span class="lesson-number">3.2</span> <span class="lesson-title">MetaTrader 4/5 Platformasi Bilan Tanushuv</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars11.html"><span class="lesson-number">3.3</span> <span class="lesson-title">Birinchi Savdoni Ochish: BUY va SELL</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars12.html"><span class="lesson-number">3.4</span> <span class="lesson-title">Order Turlari (Market, Limit, Stop)</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+            </ul>
+        </div>
+
+        <!-- Modul 4: Tahlil Asoslari -->
+        <div class="module" data-aos="fade-up" data-aos-delay="500">
+            <div class="module-header">
+                <h2><i class="fas fa-chart-simple"></i> Modul 4: Tahlil Asoslari</h2>
+            </div>
+            <ul class="lesson-list">
+                <li class="lesson-item"><a href="dars13.html"><span class="lesson-number">4.1</span> <span class="lesson-title">Texnik va Fundamental Tahlil Farqi</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars14.html"><span class="lesson-number">4.2</span> <span class="lesson-title">Grafik Turlari: Chiziqli, Bar va Shamlar</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars15.html"><span class="lesson-number">4.3</span> <span class="lesson-title">Yapon Shamlari Asoslari (Doji, Marubozu)</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars16.html"><span class="lesson-number">4.4</span> <span class="lesson-title">Trend, Qo'llab-quvvatlash va Qarshilik</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+            </ul>
+        </div>
+
+        <!-- Modul 5: Risk Menejment -->
+        <div class="module" data-aos="fade-up" data-aos-delay="600">
+            <div class="module-header">
+                <h2><i class="fas fa-shield-halved"></i> Modul 5: Risk Menejment</h2>
+            </div>
+            <ul class="lesson-list">
+                <li class="lesson-item"><a href="dars17.html"><span class="lesson-number">5.1</span> <span class="lesson-title">Stop Loss va Take Profit: Zararni Cheklash, Foydani Olish</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars18.html"><span class="lesson-number">5.2</span> <span class="lesson-title">Risk va Daromad Nisbati (Risk/Reward Ratio)</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+                <li class="lesson-item"><a href="dars19.html"><span class="lesson-number">5.3</span> <span class="lesson-title">Kapitalni Boshqarish (Money Management)</span> <span class="lesson-status"><i class="far fa-circle-play"></i></span></a></li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- JS Kutubxonalari -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
+</body>
+</html>

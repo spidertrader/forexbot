@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.2 Dars: Bozor Ishtirokchilari - VodiyTrade</title>
+    
+    <!-- Ikonkalar uchun kutubxona (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Animatsiyalar uchun kutubxona (AOS) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* Google Fonts import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        /* Umumiy sozlamalar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary-color: #06b6d4;
+            --secondary-color: #0e7490;
+            --bg-dark: #0f172a;
+            --bg-light: #1e293b;
+            --text-light: #f1f5f9;
+            --text-dark: #94a3b8;
+            --border-color: #334155;
+            --green-color: #22c55e;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .back-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Dars Kontenti */
+        main {
+            padding: 40px 0 80px 0;
+        }
+        
+        .lesson-container {
+            background: var(--bg-light);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        
+        .lesson-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .lesson-header h1 {
+            font-size: 2rem;
+        }
+        
+        .lesson-content {
+            padding: 30px;
+            min-height: 400px; /* Qadamlar almashganda sakramasligi uchun */
+            text-align: center;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .step p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+        }
+        
+        .participants-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .participant-card {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .participant-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .participant-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Navigatsiya va Progress */
+        .lesson-footer {
+            padding: 20px 30px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn:disabled {
+            background: var(--border-color);
+            cursor: not-allowed;
+        }
+        
+        #next-btn {
+            background: var(--primary-color);
+        }
+        
+        #next-lesson-link {
+            display: none; /* Boshida ko'rinmaydi */
+            background: var(--green-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="/index.html" class="logo">Vodiy<span>Trade</span></a>
+            <a href="forex-asoslari.html" class="back-link">&larr; Barcha Darslar</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="lesson-container" data-aos="fade-up">
+            <div class="lesson-header">
+                <h1>1.2 Dars: Bozor Ishtirokchilari Kimlar?</h1>
+            </div>
+            <div class="lesson-content">
+                <!-- Step 1 -->
+                <div class="step active" data-step="1">
+                    <h2>Bozordagi "O'yinchilar"</h2>
+                    <p>Forex bozori — bu shunchaki grafiklar emas. Bu turli maqsadlarga ega bo'lgan millionlab ishtirokchilarning o'zaro kurash maydoni. Keling, asosiy "o'yinchilar" bilan tanishamiz.</p>
+                    <i class="fas fa-users" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step" data-step="2">
+                    <h2>1. Super Banklar (Market Meykerlar)</h2>
+                    <p>Bozorning eng yuqori pog'onasida Deutsche Bank, Citi, JPMorgan kabi gigant banklar turadi. Ular kuniga milliardlab dollarlik operatsiyalarni amalga oshirib, bozor uchun narx belgilaydilar (likvidlikni ta'minlaydilar). Bizning savdolarimiz oxir-oqibat ulargacha yetib boradi.</p>
+                    <i class="fas fa-university" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step" data-step="3">
+                    <h2>2. Markaziy Banklar</h2>
+                    <p>Har bir davlatning o'z Markaziy Banki (masalan, AQSh Federal Zaxirasi - FRS) bor. Ularning asosiy vazifasi — milliy valyuta kursini barqaror ushlab turish. Ular foiz stavkalarini o'zgartirish yoki bozorga to'g'ridan-to'g'ri aralashish (intervensiya) orqali narxga kuchli ta'sir o'tkazishi mumkin.</p>
+                    <i class="fas fa-landmark" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step" data-step="4">
+                    <h2>3. Yirik Kompaniyalar va Korporatsiyalar</h2>
+                    <p>Apple, Toyota, Samsung kabi xalqaro kompaniyalar doimiy ravishda valyuta ayirboshlash operatsiyalarini amalga oshiradilar. Masalan, Yaponiyadagi Toyota kompaniyasi AQShda sotilgan mashinalaridan tushgan dollarni o'z vatanida iyenaga almashtiradi. Ularning maqsadi spekulyatsiya emas, balki o'z biznesini yuritishdir.</p>
+                    <i class="fas fa-building" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step" data-step="5">
+                    <h2>4. Investitsion Fondlar (Hedge Funds)</h2>
+                    <p>Bu yirik sarmoyadorlar valyuta kurslarining o'zgarishidan foyda ko'rish maqsadida bozorga kiradilar. Ular katta hajmdagi pullarni boshqaradilar va bozorga sezilarli ta'sir ko'rsata oladilar. Ularning asosiy maqsadi — spekulyatsiya orqali daromad olish.</p>
+                    <i class="fas fa-chart-line" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step" data-step="6">
+                    <h2>5. Chakana Treyderlar (Biz!)</h2>
+                    <p>Bu biz kabi individual treyderlar. Biz bozorga brokerlar orqali kiramiz. Garchi bizning savdo hajmlarimiz yuqoridagilarga nisbatan juda kichik bo'lsa-da, butun dunyodagi millionlab chakana treyderlar birlashib, bozorning muhim bir qismini tashkil etadi.</p>
+                    <i class="fas fa-user-tie" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+                
+                <!-- Step 7 -->
+                <div class="step" data-step="7">
+                    <h2>Dars Xulosasi</h2>
+                    <p>Ko'rib turganingizdek, Forex — bu murakkab ekotizim. Har bir ishtirokchining o'z maqsadi bor va ularning barchasi birgalikda global valyuta bozorini shakllantiradi. Buni tushunish, bozor harakatlarini oldindan taxmin qilishga yordam beradi.</p>
+                    <i class="fas fa-sitemap" style="font-size: 5rem; color: var(--green-color);"></i>
+                </div>
+
+            </div>
+            <div class="lesson-footer">
+                <div class="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn" id="prev-btn" disabled>Ortga</button>
+                    <button class="btn" id="next-btn">Keyingisi</button>
+                    <a href="dars3.html" class="btn" id="next-lesson-link">Keyingi Darsga O'tish</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JS Kutubxonalari -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        const steps = document.querySelectorAll('.step');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const nextLessonLink = document.getElementById('next-lesson-link');
+        const progressBar = document.getElementById('progress-bar');
+        
+        let currentStep = 1;
+        const totalSteps = steps.length;
+
+        function updateLessonState() {
+            // Barcha qadamlarni yashirish
+            steps.forEach(step => step.classList.remove('active'));
+            // Joriy qadamni ko'rsatish
+            document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+
+            // Progress barni yangilash
+            const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Tugmalarni sozlash
+            prevBtn.disabled = currentStep === 1;
+            
+            if (currentStep === totalSteps) {
+                nextBtn.style.display = 'none';
+                nextLessonLink.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                nextLessonLink.style.display = 'none';
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateLessonState();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateLessonState();
+            }
+        });
+
+        // Dars boshlanganda birinchi holatni o'rnatish
+        updateLessonState();
+    </script>
+</body>
+</html>

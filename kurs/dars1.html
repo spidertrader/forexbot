@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1 Dars: Forex Bozori Nima? - VodiyTrade</title>
+    
+    <!-- Ikonkalar uchun kutubxona (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Animatsiyalar uchun kutubxona (AOS) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* Google Fonts import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        /* Umumiy sozlamalar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary-color: #06b6d4;
+            --secondary-color: #0e7490;
+            --bg-dark: #0f172a;
+            --bg-light: #1e293b;
+            --text-light: #f1f5f9;
+            --text-dark: #94a3b8;
+            --border-color: #334155;
+            --green-color: #22c55e;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .back-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Dars Kontenti */
+        main {
+            padding: 40px 0 80px 0;
+        }
+        
+        .lesson-container {
+            background: var(--bg-light);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        
+        .lesson-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .lesson-header h1 {
+            font-size: 2rem;
+        }
+        
+        .lesson-content {
+            padding: 30px;
+            min-height: 400px; /* Qadamlar almashganda sakramasligi uchun */
+            text-align: center;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .step p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+        }
+        
+        .info-box {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+        
+        .info-box .currency {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Bozor hajmi grafigi */
+        .market-comparison {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .bar {
+            background: var(--border-color);
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: left;
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .bar-inner {
+            background: var(--primary-color);
+            height: 100%;
+            border-radius: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: growBar 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        @keyframes growBar {
+            from { width: 0; }
+        }
+
+        /* Navigatsiya va Progress */
+        .lesson-footer {
+            padding: 20px 30px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn:disabled {
+            background: var(--border-color);
+            cursor: not-allowed;
+        }
+        
+        #next-btn {
+            background: var(--primary-color);
+        }
+        
+        #next-lesson-link {
+            display: none; /* Boshida ko'rinmaydi */
+            background: var(--green-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="/index.html" class="logo">Vodiy<span>Trade</span></a>
+            <a href="forex-asoslari.html" class="back-link">&larr; Barcha Darslar</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="lesson-container" data-aos="fade-up">
+            <div class="lesson-header">
+                <h1>1.1 Dars: Forex Bozori Nima?</h1>
+            </div>
+            <div class="lesson-content">
+                <!-- Step 1 -->
+                <div class="step active" data-step="1">
+                    <h2>Oddiy Hayotiy Misol</h2>
+                    <p>Tasavvur qiling, siz AQShga 🇺🇸 sayohat qilmoqchisiz va <span style="color: var(--primary-color); font-weight: 700;">$1,000</span> kerak. Buning uchun bankka borib, o'z so'mingizni 🇺🇿 dollarga almashtirasiz.</p>
+                    <div class="info-box">
+                        <p>Bugungi kurs: <span class="currency">$1 = 12,600 so'm</span></p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step" data-step="2">
+                    <h2>Sayohat Bekor Bo'ldi</h2>
+                    <p>Afsuski, sayohat bekor bo'ldi. Bir haftadan so'ng siz dollarlaringizni qaytarib so'mga almashtirishga qaror qildingiz. Lekin bu vaqt ichida kurs o'zgardi!</p>
+                     <div class="info-box">
+                        <p>Yangi kurs: <span class="currency" style="color: var(--green-color);">$1 = 12,750 so'm</span></p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step" data-step="3">
+                    <h2>Kutilmagan Foyda</h2>
+                    <p>Siz <span style="color: var(--text-light);">$1,000</span> ni qaytarib so'mga almashtirganingizda, kurs farqidan foyda ko'rdingiz. Bu jarayonda siz hech narsa ishlab chiqarmadingiz, shunchaki valyuta qiymatining o'zgarishidan pul ishladingiz.</p>
+                    <div class="info-box">
+                        <p>Sizning foydangiz: <span class="currency" style="color: var(--green-color);">+150,000 so'm</span></p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step" data-step="4">
+                    <h2>Xo'sh, Forex Nima?</h2>
+                    <p>Forex (Foreign Exchange) — bu aynan shu jarayonning global, onlayn ko'rinishi. Siz bankka bormaysiz, balki barcha amaliyotlarni telefoningiz yoki kompyuteringiz orqali bajarasiz. Siz bir valyutani sotib olib, uning narxi boshqa valyutaga nisbatan ko'tarilishini kutasiz.</p>
+                    <i class="fas fa-mobile-alt" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step" data-step="5">
+                    <h2>Bozorning Gigant Hajmi</h2>
+                    <p>Forex — dunyodagi eng katta va eng likvid moliyaviy bozor. Uning kunlik savdo hajmi boshqa barcha bozorlarni birlashtirganda ham ulardan ancha katta.</p>
+                    <div class="market-comparison">
+                        <div class="bar"><div class="bar-inner" style="width: 100%; padding: 5px;">Forex: ~$7.5 Trillion (kuniga)</div></div>
+                        <div class="bar"><div class="bar-inner" style="width: 5%; background: var(--secondary-color); padding: 5px;">NYSE: ~$25 Milliard</div></div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step" data-step="6">
+                    <h2>Nima Uchun Bozor 24/5 Ishlaydi?</h2>
+                    <p>Forex markazlashgan birjaga ega emas (masalan, Nyu-York fond birjasi kabi). Bu banklararo global tarmoq. Dunyoning bir qismida tun bo'lganda, boshqa qismida kun bo'ladi. Shu sababli, dushanbadan jumagacha bozor doim ochiq.</p>
+                    <i class="fas fa-globe-asia" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+                
+                <!-- Step 7 -->
+                <div class="step" data-step="7">
+                    <h2>Dars Xulosasi</h2>
+                    <p>Demak, Forex — bu valyuta kurslarining o'zgarishidan foyda ko'rishga asoslangan global onlayn bozor. Bu yerda siz pulning o'zini emas, uning qiymatini savdo qilasiz. Keyingi darsda bozorning asosiy ishtirokchilari haqida bilib olasiz!</p>
+                    <i class="fas fa-check-circle" style="font-size: 5rem; color: var(--green-color);"></i>
+                </div>
+
+            </div>
+            <div class="lesson-footer">
+                <div class="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn" id="prev-btn" disabled>Ortga</button>
+                    <button class="btn" id="next-btn">Keyingisi</button>
+                    <a href="dars2.html" class="btn" id="next-lesson-link">Keyingi Darsga O'tish</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JS Kutubxonalari -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        const steps = document.querySelectorAll('.step');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const nextLessonLink = document.getElementById('next-lesson-link');
+        const progressBar = document.getElementById('progress-bar');
+        
+        let currentStep = 1;
+        const totalSteps = steps.length;
+
+        function updateLessonState() {
+            // Barcha qadamlarni yashirish
+            steps.forEach(step => step.classList.remove('active'));
+            // Joriy qadamni ko'rsatish
+            document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+
+            // Progress barni yangilash
+            const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Tugmalarni sozlash
+            prevBtn.disabled = currentStep === 1;
+            
+            if (currentStep === totalSteps) {
+                nextBtn.style.display = 'none';
+                nextLessonLink.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                nextLessonLink.style.display = 'none';
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateLessonState();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateLessonState();
+            }
+        });
+
+        // Dars boshlanganda birinchi holatni o'rnatish
+        updateLessonState();
+    </script>
+</body>
+</html>
